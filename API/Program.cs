@@ -1,4 +1,5 @@
-using Core.Interfaces;
+using API.Extensions;
+using API.Middleware;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,8 +18,8 @@ builder.Services.AddDbContext<StoreContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
-// Register the ProductRepository for dependency injection and associate it with the IProductRepository interface.
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddApplicationServices(); // Import of ApplicationServicesExtensions.cs
+builder.Services.AddSwaggerDocumentation(); // Import of SwaggerServiceExtensions.cs
 
 var app = builder.Build();
 
@@ -42,12 +43,10 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseMiddleware<ExceptionMiddleware>();
+app.UseSwaggerDocumentation();
+
+app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
 app.UseHttpsRedirection();
 
