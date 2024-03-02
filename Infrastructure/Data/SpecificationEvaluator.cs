@@ -22,6 +22,21 @@ namespace Infrastructure.Data
                 query = query.Where(spec.Criteria); // Apply the criteria to the query
             }
 
+            if (spec.OrderBy != null) // Check if the specification has an order by defined
+            {
+                query = query.OrderBy(spec.OrderBy); // Apply the order by to the query
+            }
+
+            if (spec.OrderByDescending != null) // Check if the specification has an order by descending defined
+            {
+                query = query.OrderByDescending(spec.OrderByDescending); // Apply the order by descending to the query
+            }
+
+            if (spec.IsPagingEnabled) // Check if paging is enabled
+            {
+                query = query.Skip(spec.Skip).Take(spec.Take); // Apply paging
+            }
+
             // Apply all included entities specified in the specification to the query
             query = spec.Includes.Aggregate(query, (current, include) => current.Include(include));
 

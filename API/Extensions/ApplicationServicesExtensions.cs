@@ -1,4 +1,5 @@
 using API.Errors;
+using API.Helpers;
 using Core.Interfaces;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,9 @@ namespace API.Extensions
 
             // Register the GenericRepository for dependency injection and associate it with the IGenericRepository interface.
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
+            // Register the ProductBrandRepository for dependency injection and associate it with the IProductBrandRepository interface.
+            services.AddAutoMapper(typeof(MappingProfiles));
 
             // Configuring the behavior of the API
             services.Configure<ApiBehaviorOptions>(options =>

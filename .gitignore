@@ -7,6 +7,7 @@ obj
 bin
 appsettings.json
 *.db
+*.png
 
 
 # dotenv files

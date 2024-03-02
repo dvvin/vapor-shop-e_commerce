@@ -21,6 +21,20 @@ builder.Services.AddDbContext<StoreContext>(options =>
 builder.Services.AddApplicationServices(); // Import of ApplicationServicesExtensions.cs
 builder.Services.AddSwaggerDocumentation(); // Import of SwaggerServiceExtensions.cs
 
+builder.Services.AddCors(corsOptions => // Adds CORS services to the specified IServiceCollection.
+{
+    corsOptions.AddPolicy( // Adds a CORS policy to the CORS services.
+        "CorsPolicy",
+        policy =>
+        {
+            policy
+                .AllowAnyHeader() // Allows any header to be used for the request.
+                .AllowAnyMethod() // Allows any HTTP method to be used for the request.
+                .WithOrigins("http://localhost:5273"); // Specifies the origins that are allowed to access the resources.
+        }
+    );
+});
+
 var app = builder.Build();
 
 // Using block to create a scope for the service provider.
@@ -49,6 +63,10 @@ app.UseSwaggerDocumentation();
 app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
 app.UseHttpsRedirection();
+
+app.UseStaticFiles(); // Enables the use of static files
+
+app.UseCors("CorsPolicy"); // Enables CORS for the specified policy
 
 app.UseAuthorization();
 

@@ -45,6 +45,12 @@ namespace Infrastructure.Data
             return await ApplySpecification(spec).ToListAsync();
         }
 
+        // Retrieves the count of entities of type T based on the provided specification asynchronously.
+        public async Task<int> CountAsync(ISpecification<T> spec)
+        {
+            return await ApplySpecification(spec).CountAsync();
+        }
+
         // Applies the given specification to the queryable set of entities of type T.
         private IQueryable<T> ApplySpecification(ISpecification<T> spec)
         {

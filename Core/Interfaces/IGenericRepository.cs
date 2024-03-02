@@ -16,5 +16,8 @@ namespace Core.Interfaces
 
         // Declare a method to asynchronously list entities that match a specific specification
         Task<IReadOnlyList<T>> ListAsync(ISpecification<T> spec);
+
+        // Declare a method to asynchronously count the number of entities that match a specific specification
+        Task<int> CountAsync(ISpecification<T> spec);
     }
 }
