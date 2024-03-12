@@ -17,8 +17,9 @@ import { HomeModule } from './home/home.module';
     HttpClientModule,
     CommonModule,
     CoreModule,
-    HomeModule
-  ]
+    HomeModule,
+  ],
+  providers: [],
 })
 export class AppComponent implements OnInit {
   title = 'Vapor Shop';
