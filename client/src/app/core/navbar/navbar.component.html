@@ -1,20 +1,48 @@
-<header class="d-flex flex-wrap align-items-center justify-content-center
-    justify-content-md-between py-3 mb-4 border-bottom bg-white fixed-top">
-    <img src="assets/images/logo.png" routerLink="/" class="logo ms-4" style="max-height: 50px;" alt="logo">
-
-    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 custom-padding-start">
-        <li><a [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
-                class="nav-link px-2">HOME</a></li>
-        <li><a routerLink="/shop" routerLinkActive="active" class="nav-link px-2 ">SHOP</a></li>
-        <li><a routerLink="/test-error" routerLinkActive="active" class="nav-link px-2 ">ERRORS</a></li>
-    </ul>
-
-    <div class="d-flex align-items-center col-md-2 text-end me-4">
-        <a class="me-auto position-relative">
-            <i class="fa fa-shopping-cart fa-2x text-dark"></i>
-            <div class="cart-no">5</div>
-        </a>
-        <button type="button" class="btn btn-outline-dark me-2">Login</button>
-        <button type="button" class="btn btn-outline-dark">Sign-up</button>
+<header class="header fixed-top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-3 col-lg-2">
+                <div class="header__logo" style="max-height: 60px;">
+                    <a routerLink="/">
+                        <img src="assets/images/logo.png" style="max-height: 65px;  margin-top: -15px;" alt="">
+                    </a>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-7">
+                <nav class="ms-5 ps-5 header__menu">
+                    <ul>
+                        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                            <a routerLink="/">Home</a>
+                        </li>
+                        <li routerLinkActive="active">
+                            <a routerLink="/shop">Shop</a>
+                        </li>
+                        <li routerLinkActive="active">
+                            <a routerLink="/test-error">Errors</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-lg-3">
+                <div class="header__right">
+                    <div class="header__right__auth">
+                        <a href="#">Login</a>
+                        <a href="#"> Register</a>
+                    </div>
+                    <ul class="header__right__widget">
+                        <!-- <li><span class="icon_search search-switch"></span></li> -->
+                        <li><a href="#"><span class="icon_heart_alt"></span>
+                                <div class="tip">2</div>
+                            </a></li>
+                        <li><a href="#"><span class="icon_bag_alt"></span>
+                                <div class="tip">2</div>
+                            </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="canvas__open">
+            <i class="fa fa-bars"></i>
+        </div>
     </div>
 </header>

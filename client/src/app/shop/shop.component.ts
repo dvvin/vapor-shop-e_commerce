@@ -24,7 +24,11 @@ export class ShopComponent implements OnInit {
   brands: IBrand[] = [];
   types: IType[] = [];
   shopParams = new ShopParams();
+
   totalCount = 0;
+  isCollapseOneOpen = false;
+  totalPages: number = 0;
+
   sortOptions = [
     { name: 'Alphabetical', value: 'name' },
     { name: 'Price: Low to High', value: 'priceAsc' },
@@ -48,6 +52,7 @@ export class ShopComponent implements OnInit {
           this.shopParams.pageNumber = response!.pageIndex;
           this.shopParams.pageSize = response!.pageSize;
           this.totalCount = response!.count;
+          this.calculateTotalPages();
         },
         error: (error) => {
           console.log(error);
@@ -96,9 +101,9 @@ export class ShopComponent implements OnInit {
     this.getProducts();
   }
 
-  onPageChanged(event: any) {
-    if (this.shopParams.pageNumber !== event) {
-      this.shopParams.pageNumber = event;
+  onPageChanged(pageNumber: number) {
+    if (this.shopParams.pageNumber !== pageNumber) {
+      this.shopParams.pageNumber = pageNumber;
       this.getProducts();
     }
   }
@@ -109,9 +114,24 @@ export class ShopComponent implements OnInit {
     this.getProducts();
   }
 
+  onFormSubmit(event: Event) {
+    event.preventDefault();
+    this.onSearch();
+  }
+
+
+
   onReset() {
     this.searchTerm.nativeElement.value = '';
     this.shopParams = new ShopParams();
     this.getProducts();
+  }
+
+  calculateTotalPages() {
+    this.totalPages = Math.ceil(this.totalCount / this.shopParams.pageSize);
+  }
+
+  toggleCollapseOne() {
+    this.isCollapseOneOpen = !this.isCollapseOneOpen;
   }
 }

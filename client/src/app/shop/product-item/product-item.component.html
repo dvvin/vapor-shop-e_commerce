@@ -1,14 +1,20 @@
-<div class="card h-100 box-shadow">
-    <img src="{{product.pictureUrl}}" alt="{{product.name}}" class="img-fluid bg-info">
-    <div class="card-body d-flex flex-column">
-        <a routerLink="/shop/{{product.id}}">
-            <h5 class="card-title">{{product.name}}</h5>
-        </a>
-        <span class="mb-2">{{product.price | currency}}</span>
-
-        <div class="btn-group mt-auto">
-            <button type="button" class="btn btn-outline-secondary fa fa-shopping-cart me-2"></button>
-            <button type="button" routerLink="/shop/{{product.id}}" class="btn btn-outline-secondary">View</button>
+<div class="product__item">
+    <div class="product__item__pic set-bg" [style.background-image]="'url(' + product.pictureUrl + ')'">
+        <div class="label new">New</div>
+        <ul class="product__hover">
+            <li><a [href]="product.pictureUrl" class="image-popup"><span class="arrow_expand"></span></a></li>
+            <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+            <li><a routerLink="/shop/{{product.id}}"><span class="icon_bag_alt"></span></a></li>
+        </ul>
+    </div>
+    <div class="product__item__text">
+        <h6>
+            <a routerLink="/shop/{{product.id}}">
+                {{product.name}}
+            </a>
+        </h6>
+        <div class="product__price">
+            {{product.price | currency}}
         </div>
     </div>
 </div>

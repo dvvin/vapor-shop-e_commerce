@@ -1,1 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+@import "./assets/css/bootstrap.min.css";
+@import "./assets/css/elegant-icons.css";
+@import "./assets/css/font-awesome.min.css";
+@import "./assets/css/jquery-ui.min.css";
+@import "./assets/css/magnific-popup.css";
+@import "./assets/css/owl.carousel.min.css";
+@import "./assets/css/slicknav.min.css";
+@import "./assets/css/style.css";
+
+@import "./assets/sass/base.scss";
+@import "./assets/sass/blog-details.scss";
+@import "./assets/sass/blog-sidebar.scss";
+@import "./assets/sass/blog.scss";
+@import "./assets/sass/breadcrumb.scss";
+@import "./assets/sass/categories.scss";
+@import "./assets/sass/checkout.scss";
+@import "./assets/sass/contact.scss";
+@import "./assets/sass/footer.scss";
+@import "./assets/sass/header.scss";
+@import "./assets/sass/home-page.scss";
+@import "./assets/sass/mixins.scss";
+@import "./assets/sass/product-details.scss";
+@import "./assets/sass/product.scss";
+@import "./assets/sass/responsive.scss";
+@import "./assets/sass/shop-cart.scss";
+@import "./assets/sass/shop.scss";
+@import "./assets/sass/variable.scss";
+@import "./assets/sass/style.scss";
+
+@import url('https://fonts.googleapis.com/css2?family=Cookie&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');

@@ -1,10 +1,16 @@
-<pagination
-    [boundaryLinks]="true"
-    [totalItems]="totalCount"
-    (pageChanged)="onPagerChange($any($event))"
-    [itemsPerPage]="pageSize"
-    previousText="&lsaquo;"
-    nextText="&rsaquo;"
-    firstText="&laquo;"
-    lastText="&raquo;">
-</pagination>
+<div class="pagination__option">
+    <a [class.inactive]="shopParams.pageNumber <= 1"
+        (click)="shopParams.pageNumber > 1 && onPageChanged(shopParams.pageNumber - 1)">
+        <i class="fa fa-angle-left"></i>
+    </a>
+
+    <a *ngFor="let pageNumber of [].constructor(totalPages); let i = index"
+        [class.active]="shopParams.pageNumber === i+1" (click)="onPageChanged(i+1)">
+        {{ i+1 }}
+    </a>
+
+    <a [class.inactive]="shopParams.pageNumber >= totalPages"
+        (click)="shopParams.pageNumber < totalPages && onPageChanged(shopParams.pageNumber + 1)">
+        <i class="fa fa-angle-right"></i>
+    </a>
+</div>

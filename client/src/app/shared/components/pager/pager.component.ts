@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ShopParams } from '../../models/shopParams';
 
 @Component({
   selector: 'app-pager',
@@ -9,18 +10,12 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
   templateUrl: './pager.component.html',
   styleUrl: './pager.component.scss'
 })
-export class PagerComponent implements OnInit {
-  @Input() totalCount = 0;
-  @Input() pageSize = 0;
+export class PagerComponent {
+  @Input() totalPages: number = 0;
+  @Input() shopParams: ShopParams = new ShopParams();
   @Output() pageChanged = new EventEmitter<number>();
 
-  constructor() { }
-
-  ngOnInit(): void {
-
-  }
-
-  onPagerChange(event: any) {
-    this.pageChanged.emit(event.page)
+  onPageChanged(pageNumber: number) {
+    this.pageChanged.emit(pageNumber);
   }
 }
