@@ -1,8 +1,13 @@
-<app-navbar></app-navbar>
+<!-- <div id="preloder">
+    <div class="loader"></div>
+</div> -->
 
-<div id="preloder">
+<div id="preloder" *ngIf="isLoading$ | async">
     <div class="loader"></div>
 </div>
+
+<app-navbar></app-navbar>
+<app-section-header></app-section-header>
 
 <div class="container">
     <router-outlet></router-outlet>

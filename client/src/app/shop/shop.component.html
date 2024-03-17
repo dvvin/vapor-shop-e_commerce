@@ -1,84 +1,87 @@
-<section class="shop spad" style="margin-top: 60px;">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-3">
-                <div class="shop__sidebar">
-                    <div class="sidebar__categories">
-                        <form class="search-model-form mb-4" (submit)="onFormSubmit($event)">
-                            <input #search (keydown.enter)="onFormSubmit($event)" type="text" id="search-input"
-                                placeholder="Search">
-                        </form>
+<section class="shop spad">
+    <ng-container *ngIf="types && brands && products">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <div class="shop__sidebar">
+                        <div class="sidebar__categories">
+                            <form class="search-model-form mb-4" (submit)="onFormSubmit($event)">
+                                <input #search (keydown.enter)="onFormSubmit($event)" type="text" id="search-input"
+                                    placeholder="Search">
+                            </form>
 
-                        <div class="section-title">
-                            <h4>Filters</h4>
-                        </div>
-                        <div class="categories__accordion">
-                            <div class="accordion" id="accordionExample">
-                                <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseOne">Sort</a>
-                                    </div>
-                                    <div id="collapseOne" class="collapse" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <ul>
-                                                <li *ngFor="let sort of sortOptions">
-                                                    <a href="#" (click)="onSortSelected(sort.value);
+                            <div class="section-title">
+                                <h4>Filters</h4>
+                            </div>
+                            <div class="categories__accordion">
+                                <div class="accordion" id="accordionExample">
+                                    <div class="card">
+                                        <div class="card-heading">
+                                            <a data-toggle="collapse" data-target="#collapseOne">Sort</a>
+                                        </div>
+                                        <div id="collapseOne" class="collapse" data-parent="#accordionExample">
+                                            <div class="card-body">
+                                                <ul>
+                                                    <li *ngFor="let sort of sortOptions">
+                                                        <a href="#" (click)="onSortSelected(sort.value);
                                                         $event.preventDefault()">
-                                                        {{sort.name}}
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                                            {{sort.name}}
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="sidebar__sizes">
-                        <div class="section-title">
-                            <h4>Brands</h4>
+                        <div class="sidebar__sizes">
+                            <div class="section-title">
+                                <h4>Brands</h4>
+                            </div>
+                            <div class="size__list">
+                                <label *ngFor="let brand of brands">
+                                    {{brand.name}}
+                                    <input type="checkbox" [checked]="brand.id === this.shopParams.brandId"
+                                        (change)="onBrandSelected(brand.id)">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
                         </div>
-                        <div class="size__list">
-                            <label *ngFor="let brand of brands">
-                                {{brand.name}}
-                                <input type="checkbox" [checked]="brand.id === this.shopParams.brandId"
-                                    (change)="onBrandSelected(brand.id)">
-                                <span class="checkmark"></span>
-                            </label>
-                        </div>
-                    </div>
 
-                    <div class="sidebar__color">
-                        <div class="section-title">
-                            <h4>Types</h4>
-                        </div>
-                        <div class="size__list color__list">
-                            <label *ngFor="let type of types">
-                                {{type.name}}
-                                <input type="checkbox" [checked]="type.id === this.shopParams.typeId"
-                                    (change)="onTypeSelected(type.id)">
-                                <span class="checkmark"></span>
-                            </label>
+                        <div class="sidebar__color">
+                            <div class="section-title">
+                                <h4>Types</h4>
+                            </div>
+                            <div class="size__list color__list">
+                                <label *ngFor="let type of types">
+                                    {{type.name}}
+                                    <input type="checkbox" [checked]="type.id === this.shopParams.typeId"
+                                        (change)="onTypeSelected(type.id)">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-lg-9 col-md-9">
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 mb-4" *ngFor="let item of products">
-                        <app-product-item [product]="item">
-                        </app-product-item>
-                    </div>
+                <div class="col-lg-9 col-md-9">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 mb-4" *ngFor="let item of products">
+                            <app-product-item [product]="item">
+                            </app-product-item>
+                        </div>
 
-                    <div class="col-lg-12 text-center">
-                        <app-pager [totalPages]="totalPages" [shopParams]="shopParams"
-                            (pageChanged)="onPageChanged($event)">
-                        </app-pager>
+                        <div class="col-lg-12 text-center">
+                            <app-pager [totalPages]="totalPages" [shopParams]="shopParams"
+                                (pageChanged)="onPageChanged($event)">
+                            </app-pager>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+
+    </ng-container>
 </section>

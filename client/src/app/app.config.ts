@@ -6,6 +6,7 @@ import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideToastr } from 'ngx-toastr';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { LoadingInterceptor } from './core/interceptors/loading.interceptors';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,6 +14,9 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     {
       provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true
     },
     provideToastr({
       positionClass: 'toast-bottom-right',
