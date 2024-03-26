@@ -31,6 +31,64 @@
     }
 }
 
+.categories__topleft {
+    background-color: #c2548d;
+
+    .categories__text {
+        h4 {
+            color: #ffffffeb;
+        }
+
+        p {
+            color: #ffffffeb;
+        }
+
+        a {
+            color: #ffffffeb;
+        }
+    }
+}
+
+.categories__topright {
+    background-color: #dcf0b4;
+}
+
+.categories__bottomleft {
+    background-color: #9db1da;
+
+    .categories__text {
+        h4 {
+            color: #ffffffeb;
+        }
+
+        p {
+            color: #ffffffeb;
+        }
+
+        a {
+            color: #ffffffeb;
+        }
+    }
+}
+
+.categories__bottomright {
+    background-color: #ff9bff;
+
+    .categories__text {
+        // h4 {
+        //     color: #ffffffeb;
+        // }
+
+        p {
+            color: #ffffffeb;
+        }
+
+        a {
+            color: #ffffffeb;
+        }
+    }
+}
+
 .categories__text {
 
     h1 {
