@@ -13,6 +13,9 @@ namespace API.Extensions
             // Register the ProductRepository for dependency injection and associate it with the IProductRepository interface.
             services.AddScoped<IProductRepository, ProductRepository>();
 
+            // Register the BasketRepository for dependency injection and associate it with the IBasketRepository interface.
+            services.AddScoped<IBasketRepository, BasketRepository>();
+
             // Register the GenericRepository for dependency injection and associate it with the IGenericRepository interface.
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
