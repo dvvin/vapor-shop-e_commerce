@@ -4,6 +4,7 @@ import { IProduct } from '../../shared/models/product';
 import { Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { BasketService } from '../../basket/basket.service';
 
 
 @Component({
@@ -16,9 +17,11 @@ import { RouterModule } from '@angular/router';
 export class ProductItemComponent implements OnInit {
   @Input() product!: IProduct;
 
-  constructor() { }
+  constructor(private basketService: BasketService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
 
+  addItemToBasket() {
+    this.basketService.addItemToBasket(this.product);
   }
 }

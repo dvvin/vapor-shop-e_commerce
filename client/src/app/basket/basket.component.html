@@ -1,0 +1,87 @@
+<div *ngIf="(basket$ | async) === null">
+    <p>No items in basket</p>
+</div>
+
+<!-- <div *ngIf="(basket$ | async) as basket">
+    <ul>
+        <li *ngFor="let item of basket.items">
+            {{item.productName}} - {{item.quantity}}
+        </li>
+    </ul>
+</div> -->
+
+<section class="shop-cart spad">
+    <div *ngIf="basket$ | async as basket" class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="shop__cart__table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of basket.items">
+                                <td class="cart__product__item">
+                                    <img src="{{item.pictureUrl}}" alt="">
+                                    <div class="cart__product__item__title">
+                                        <h6>{{item.productName}}</h6>
+                                        <h6>{{item.type}}</h6>
+                                        <div class="rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="cart__price">{{item.price | currency}}</td>
+                                <td class="cart__quantity">
+                                    <div class="pro-qty">
+                                        <span (click)="decrementItemQuantity(item)" class="dec qtybtn">-</span>
+                                        <input type="text" value="{{item.quantity}}">
+                                        <span (click)="incrementItemQuantity(item)" class="inc qtybtn">+</span>
+                                    </div>
+                                </td>
+                                <td class="cart__total">{{item.price * item.quantity | currency}}</td>
+                                <td class="cart__close"><span (click)="removeItemFromBasket(item)" class="icon_close"></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="cart__btn">
+                    <a href="#">Continue Shopping</a>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="cart__btn update__btn">
+                    <a href="#"><span class="icon_loading"></span> Update cart</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <!-- <div class="discount__content">
+                    <h6>Discount codes</h6>
+                    <form action="#">
+                        <input type="text" placeholder="Enter your coupon code">
+                        <button type="submit" class="site-btn">Apply</button>
+                    </form>
+                </div> -->
+            </div>
+            <div class="col-lg-4 offset-lg-2">
+                <app-order-totals></app-order-totals>
+            </div>
+        </div>
+    </div>
+</section>
