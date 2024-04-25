@@ -1,6 +1,9 @@
 using API.Extensions;
 using API.Middleware;
+using Core.Entities.Identity;
 using Infrastructure.Data;
+using Infrastructure.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using StackExchange.Redis;
 
@@ -19,6 +22,11 @@ builder.Services.AddDbContext<StoreContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
+// Configure Identity
+builder.Services.AddDbContext<AppIdentityDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("IdentityConnection"))
+);
+
 // Configure Redis
 builder.Services.AddSingleton<IConnectionMultiplexer>(c =>
 {
@@ -31,6 +39,7 @@ builder.Services.AddSingleton<IConnectionMultiplexer>(c =>
 
 builder.Services.AddApplicationServices(); // Import of ApplicationServicesExtensions.cs
 builder.Services.AddSwaggerDocumentation(); // Import of SwaggerServiceExtensions.cs
+builder.Services.AddIdentityServices(builder.Configuration); // Import of IdentityServiceExtensions.cs
 
 builder.Services.AddCors(corsOptions => // Adds CORS services to the specified IServiceCollection.
 {
@@ -60,6 +69,11 @@ using (var scope = app.Services.CreateScope())
         await context.Database.MigrateAsync(); // Applies any pending migrations for the context to the database. Creates the database if it does not already exist.
 
         await StoreContextSeed.SeedAsync(context, loggerFactory); // Seeds the database with initial data.
+
+        var userManager = services.GetRequiredService<UserManager<AppUser>>(); // Retrieves an instance of UserManager<AppUser> from the service provider.
+        var identityContext = services.GetRequiredService<AppIdentityDbContext>(); // Retrieves an instance of AppIdentityDbContext from the service provider.
+        await identityContext.Database.MigrateAsync(); // Applies any pending migrations for the identity context to the database. Creates the database if it does not already exist.
+        await AppIdentityDbContextSeed.SeedUsersAsync(userManager);
     }
     catch (Exception ex)
     {
@@ -78,6 +92,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles(); // Enables the use of static files
 
 app.UseCors("CorsPolicy"); // Enables CORS for the specified policy
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

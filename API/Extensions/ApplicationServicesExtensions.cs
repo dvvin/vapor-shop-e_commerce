@@ -2,6 +2,7 @@ using API.Errors;
 using API.Helpers;
 using Core.Interfaces;
 using Infrastructure.Data;
+using Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Extensions
@@ -10,6 +11,9 @@ namespace API.Extensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
+            // Register the ProductService for dependency injection and associate it with the IProductService interface.
+            services.AddScoped<ITokenService, TokenService>();
+
             // Register the ProductRepository for dependency injection and associate it with the IProductRepository interface.
             services.AddScoped<IProductRepository, ProductRepository>();
 

@@ -1,5 +1,6 @@
 using API.Errors;
 using Infrastructure.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -8,6 +9,14 @@ namespace API.Controllers
     {
         // Initialize the StoreContext instance
         private readonly StoreContext _context = context;
+
+        // Handle the 'testauth' GET request
+        [HttpGet("testauth")]
+        [Authorize]
+        public ActionResult<string> GetSecretText()
+        {
+            return "secret stuff";
+        }
 
         // Handle the 'notfound' GET request
         [HttpGet("notfound")]
