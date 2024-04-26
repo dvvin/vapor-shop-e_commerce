@@ -5,7 +5,7 @@ using Core.Entities;
 namespace API.Helpers
 {
     // The IValueResolver interface maps a source type to a destination type
-    public class ProductUrlResolver : IValueResolver<Product, ProductToReturnDto, string?>
+    public class ProductUrlResolver : IValueResolver<Product, ProductToReturnDto, string>
     {
         private readonly IConfiguration _config; // Declare a private field to store the IConfiguration instance
 
@@ -16,10 +16,10 @@ namespace API.Helpers
         }
 
         // Resolve method that takes in the source object, destination object, destination member, and resolution context
-        public string? Resolve(
+        public string Resolve(
             Product source,
             ProductToReturnDto destination,
-            string? destMember,
+            string destMember,
             ResolutionContext context
         )
         {
