@@ -1,0 +1,36 @@
+<div class="form-group">
+    <input [ngClass]="(controlDir &&
+            controlDir.control &&
+            controlDir.control.touched) ?
+            !controlDir.control.valid ?
+            'is-invalid' : 'is-valid' : null" [type]="type" (input)="onChangeEvent($event)" (blur)="onTouched()"
+        id="{{label}}" #input placeholder="{{label}}" class="form-control">
+
+    <div *ngIf="
+            controlDir &&
+            controlDir.control &&
+            controlDir.control.status === 'PENDING'" class="spinner-border spinner-border-sm">
+    </div>
+
+    <div class="invalid-feedback" *ngIf="(controlDir &&
+        controlDir.control &&
+        !controlDir.control.valid &&
+        controlDir.control.touched)">
+        <span *ngIf="controlDir.control.errors?.['required']">
+            {{label}} is required
+        </span>
+
+        <span *ngIf="controlDir.control.errors?.['pattern']">
+            {{label}} is not valid
+        </span>
+
+        <div class="invalid-feedback d-block" *ngIf="(controlDir &&
+            controlDir.control &&
+            !controlDir.control.valid &&
+            controlDir.control.touched)">
+            <span *ngIf="controlDir.control.errors?.['emailExists']">
+                Email already exists
+            </span>
+        </div>
+    </div>
+</div>

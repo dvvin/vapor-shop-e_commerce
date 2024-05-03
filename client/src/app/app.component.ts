@@ -11,6 +11,7 @@ import { BusyService } from './core/services/busy.service';
 import { BasketService } from './basket/basket.service';
 import { isPlatformBrowser } from '@angular/common';
 import { PLATFORM_ID, Inject } from '@angular/core';
+import { AccountService } from './account/account.service';
 
 @Component({
   selector: 'app-root',
@@ -24,9 +25,9 @@ import { PLATFORM_ID, Inject } from '@angular/core';
     CommonModule,
     CoreModule,
     HomeModule,
-    SectionHeaderComponent
+    SectionHeaderComponent,
   ],
-  providers: [BasketService],
+  providers: [BasketService, AccountService],
 })
 export class AppComponent implements OnInit {
   title = 'Vapor Shop';
@@ -37,6 +38,7 @@ export class AppComponent implements OnInit {
     private loadingService: BusyService,
     private cdRef: ChangeDetectorRef,
     private basketService: BasketService,
+    private accountService: AccountService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.isLoading$ = this.loadingService.loading$;
@@ -48,17 +50,28 @@ export class AppComponent implements OnInit {
     });
 
     if (isPlatformBrowser(this.platformId)) {
-      const basketId = localStorage.getItem('basket_id');
-      if (basketId) {
-        this.basketService.getBasket(basketId).subscribe({
-          next: () => {
-            console.log('Initialized basket');
-          },
-          error: (error) => {
-            console.log(error);
-          }
-        });
-      }
+      this.loadBasket();
+      this.loadCurrentUser();
+      this.accountService.isAuthenticated();
+    }
+  }
+
+  loadCurrentUser() {
+    const token = localStorage.getItem('token');
+    this.accountService.loadCurrentUser(token).subscribe();
+  }
+
+  loadBasket() {
+    const basketId = localStorage.getItem('basket_id');
+    if (basketId) {
+      this.basketService.getBasket(basketId).subscribe({
+        next: () => {
+          console.log('Initialized basket');
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      });
     }
   }
 }

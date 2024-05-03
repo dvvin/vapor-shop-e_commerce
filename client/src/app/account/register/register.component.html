@@ -1,0 +1,32 @@
+<section style="padding-top: 150px;" class="contact spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="contact__content">
+                    <div class="contact__form">
+                        <h5>Register</h5>
+                        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" action="#">
+
+                            <app-text-input formControlName="displayName" [label]="'Display Name'">
+                            </app-text-input>
+
+                            <app-text-input formControlName="email" [label]="'Email'">
+                            </app-text-input>
+
+                            <app-text-input formControlName="password" [label]="'Password'" [type]="'password'">
+                            </app-text-input>
+
+                            <ul class="text-danger list-unstyled" style="padding-bottom: 20px;" *ngIf="errors">
+                                <li *ngFor="let error of errors">
+                                    {{error}}
+                                </li>
+                            </ul>
+
+                            <button  type="submit" class="site-btn">Register</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -129,6 +129,10 @@
         position: relative;
         margin-right: 8px;
 
+        &.logout {
+            cursor: pointer;
+        }
+
         &:last-child {
             margin-right: 0;
 

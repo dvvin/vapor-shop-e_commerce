@@ -10,30 +10,57 @@
             </div>
             <div class="col-xl-6 col-lg-7">
                 <nav class="ms-5 ps-5 header__menu">
-                    <ul>
-                        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                            <a routerLink="/">Home</a>
-                        </li>
-                        <li routerLinkActive="active">
-                            <a routerLink="/shop">Shop</a>
-                        </li>
-                        <li routerLinkActive="active">
-                            <a routerLink="/test-error">Errors</a>
-                        </li>
-                    </ul>
+                    <ng-container *ngIf="(currentUser$ | async) === null">
+                        <ul>
+                            <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/">Home</a>
+                            </li>
+                            <li routerLinkActive="active">
+                                <a routerLink="/shop">Shop</a>
+                            </li>
+                            <li routerLinkActive="active">
+                                <a routerLink="/test-error">Errors</a>
+                            </li>
+                        </ul>
+                    </ng-container>
+
+                    <ng-container *ngIf="currentUser$ | async">
+                        <ul>
+                            <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/">Home</a>
+                            </li>
+                            <li routerLinkActive="active">
+                                <a routerLink="/shop">Shop</a>
+                            </li>
+                            <li routerLinkActive="active">
+                                <a routerLink="/test-error">Errors</a>
+                            </li>
+                            <li routerLinkActive="active">
+                                <a routerLink="/basket">Basket</a>
+                            </li>
+                            <li routerLinkActive="active">
+                                <a routerLink="/orders">Orders</a>
+                            </li>
+                        </ul>
+                    </ng-container>
                 </nav>
             </div>
             <div class="col-lg-3">
                 <div class="header__right">
-                    <div class="header__right__auth">
-                        <a href="#">Login</a>
-                        <a href="#"> Register</a>
-                    </div>
+                    <ng-container *ngIf="(currentUser$ | async) === null">
+                        <div class="header__right__auth">
+                            <a routerLink="/account/login">Login</a>
+                            <a routerLink="/account/register"> Register</a>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngIf="currentUser$ | async">
+                        <div class="header__right__auth">
+                            <a>Welcome {{(currentUser$ | async).displayName}}</a>
+                            <a class="logout" (click)="logout()"> Logout</a>
+                        </div>
+                    </ng-container>
                     <ul class="header__right__widget">
-                        <!-- <li><span class="icon_search search-switch"></span></li>
-                        <li><a href="#"><span class="icon_heart_alt"></span>
-                                <div class="tip">2</div>
-                            </a></li> -->
                         <li>
                             <a routerLink="/basket">
                                 <span class="icon_bag_alt"></span>

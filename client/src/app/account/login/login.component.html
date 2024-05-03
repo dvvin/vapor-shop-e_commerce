@@ -1,0 +1,48 @@
+<section style="padding-top: 150px;" class="contact spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="contact__content">
+                    <div class="contact__form">
+                        <h5>Login</h5>
+                        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" action="#">
+                            <app-text-input formControlName="email" [label]="'Email'">
+                            </app-text-input>
+
+                            <app-text-input formControlName="password" [label]="'Password'" [type]="'password'">
+                            </app-text-input>
+
+                            <button [disabled]="loginForm.invalid" type="submit" class="site-btn">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <!-- <div style="padding-top: 50px;" class="contact__address">
+                    <h5>Form</h5>
+                    <ul>
+                        <li>
+                            <h6> Form Status: </h6>
+                            <p>{{loginForm.status}}</p>
+                        </li>
+                        <li>
+                            <h6>Email Status:</h6>
+                            <p>{{loginForm.get('email').status}}</p>
+                        </li>
+                        <li>
+                            <h6> Email Touched:</h6>
+                            <p>{{loginForm.get('email').touched}}</p>
+                        </li>
+                        <li>
+                            <h6> Email Dirty:</h6>
+                            <p>{{loginForm.get('email').dirty}}</p>
+                        </li>
+                        <li>
+                            <h6>{{loginForm.value | json}}</h6>
+                        </li>
+                    </ul>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</section>
