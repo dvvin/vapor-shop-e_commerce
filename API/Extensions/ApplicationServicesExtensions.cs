@@ -23,6 +23,12 @@ namespace API.Extensions
             // Register the GenericRepository for dependency injection and associate it with the IGenericRepository interface.
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
+            // Register the OrderService for dependency injection and associate it with the IOrderService interface.
+            services.AddScoped<IOrderService, OrderService>();
+
+            // Register the UnitOfWork for dependency injection and associate it with the IUnitOfWork interface.
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
             // Register the ProductBrandRepository for dependency injection and associate it with the IProductBrandRepository interface.
             services.AddAutoMapper(typeof(MappingProfiles));
 

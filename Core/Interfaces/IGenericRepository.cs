@@ -7,7 +7,7 @@ namespace Core.Interfaces
     public interface IGenericRepository<T>
         where T : BaseEntity
     {
-        Task<T?> GetByIdAsync(int id); // Declare a method to asynchronously get an entity by its ID
+        Task<T> GetByIdAsync(int id); // Declare a method to asynchronously get an entity by its ID
 
         Task<IReadOnlyList<T>> ListAllAsync(); // Declare a method to asynchronously list all entities of type T
 
@@ -19,5 +19,9 @@ namespace Core.Interfaces
 
         // Declare a method to asynchronously count the number of entities that match a specific specification
         Task<int> CountAsync(ISpecification<T> spec);
+
+        void Add(T entity); // Declare a method to add an entity to the repository
+        void Update(T entity); // Declare a method to update an entity in the repository
+        void Delete(T entity); // Declare a method to delete an entity from the repository
     }
 }
