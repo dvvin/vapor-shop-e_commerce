@@ -1,1 +1,31 @@
-<p style="padding-top: 150px;">checkout works!</p>
+<section class="checkout spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <app-stepper [linearModeSelected]="false" #appStepper>
+                    <cdk-step [label]="'Address'" [completed]="(checkoutForm.get('addressForm')).valid">
+                        <app-checkout-address [checkoutForm]="checkoutForm"></app-checkout-address>
+                    </cdk-step>
+                    <cdk-step [label]="'Delivery'" [completed]="(checkoutForm.get('deliveryForm')).valid">
+                        <app-checkout-delivery [checkoutForm]="checkoutForm"></app-checkout-delivery>
+                    </cdk-step>
+                    <cdk-step [label]="'Review'">
+                        <app-checkout-review></app-checkout-review>
+                    </cdk-step>
+                    <cdk-step [label]="'Payment'">
+                        <app-checkout-payment [checkoutForm]="checkoutForm"></app-checkout-payment>
+                    </cdk-step>
+                </app-stepper>
+            </div>
+
+            <div class="col-lg-4" style="padding-top: 7%;">
+                <form action="#" class="checkout__form">
+                    <div class="checkout__order">
+                        <h5>Order Summary</h5>
+                    </div>
+                </form>
+                <app-order-totals [isBasket]="false" [isCheckout]="true"></app-order-totals>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,9 +1,9 @@
-<div *ngIf="basketTotal$ | async as totals" class="cart__total__procced">
+<div *ngIf="basketTotal$ | async as totals" class="cart__total__procced" [ngClass]="{'checkout-padding': isCheckout}">
     <h6>Cart total</h6>
     <ul>
         <li>Subtotal <span>{{totals.subtotal | currency}}</span></li>
         <li>Shipping <span>{{totals.shipping | currency}}</span></li>
         <li>Total <span>{{totals.total | currency}}</span></li>
     </ul>
-    <a routerLink="/checkout" class="primary-btn">Proceed to checkout</a>
+    <a *ngIf="isBasket" routerLink="/checkout" class="primary-btn">Proceed to checkout</a>
 </div>

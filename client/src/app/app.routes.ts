@@ -20,9 +20,9 @@ export const routes: Routes = [
             .then(mod => mod.BasketModule), data: { breadcrumb: 'Basket' }
     },
     {
-        path: 'checkout',
-        canActivate: [authGuard],
-        component: CheckoutComponent
+        path: 'checkout', loadChildren: () => import('./checkout/checkout.module')
+            .then(mod => mod.CheckoutModule), data: { breadcrumb: 'Checkout' },
+        canActivate: [authGuard]
     },
     {
         path: 'account', loadChildren: () => import('./account/account.module')

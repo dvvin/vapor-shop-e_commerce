@@ -1,0 +1,46 @@
+<div *ngIf="(basket$ | async) === null">
+    <p>No items in basket</p>
+</div>
+
+<div class="shop__cart__table">
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of (basket$ | async).items">
+                <td routerLink="/shop/{{item.id}}" routerLinkActive="router-link-active" class="cart__product__item">
+                    <img src="{{item.pictureUrl}}" alt="">
+                    <div class="cart__product__item__title">
+                        <h6>{{item.productName}}</h6>
+                        <h6>{{item.type}}</h6>
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                    </div>
+                </td>
+                <td class="cart__price">{{item.price | currency}}</td>
+                <td class="cart__quantity">
+                    <div class="pro-qty">
+                        <span *ngIf="isBasket" (click)="decrementItemQuantity(item)" class="dec qtybtn">-</span>
+                        <input value="{{item.quantity}}" readonly>
+                        <span *ngIf="isBasket" (click)="incrementItemQuantity(item)" class="inc qtybtn">+</span>
+                    </div>
+                </td>
+                <td class="cart__total">{{item.price * item.quantity | currency}}</td>
+                <td *ngIf="isBasket" class="cart__close"><span (click)="removeItemFromBasket(item)"
+                        class="icon_close"></span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-lg-2" *ngFor="let step of steps; let i = index">
+        <h6
+            (click)="onClick(i)"
+            [class.active]="selectedIndex === i"
+            class="coupon__link"
+        >
+            {{ step.label }}: {{ step.completed }}
+        </h6>
+    </div>
+    <div>
+        <ng-container [ngTemplateOutlet]="selected.content"></ng-container>
+    </div>
+</div>

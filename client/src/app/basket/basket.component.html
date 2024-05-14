@@ -1,60 +1,17 @@
-<div *ngIf="(basket$ | async) === null">
-    <p>No items in basket</p>
+<div class="container" style="margin-top: 140px;" *ngIf="(basket$ | async) === null">
+    <h4>No items in basket</h4>
 </div>
-
-<!-- <div *ngIf="(basket$ | async) as basket">
-    <ul>
-        <li *ngFor="let item of basket.items">
-            {{item.productName}} - {{item.quantity}}
-        </li>
-    </ul>
-</div> -->
 
 <section class="shop-cart spad">
     <div *ngIf="basket$ | async as basket" class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="shop__cart__table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Product</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th>Total</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let item of basket.items">
-                                <td class="cart__product__item">
-                                    <img src="{{item.pictureUrl}}" alt="">
-                                    <div class="cart__product__item__title">
-                                        <h6>{{item.productName}}</h6>
-                                        <h6>{{item.type}}</h6>
-                                        <div class="rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="cart__price">{{item.price | currency}}</td>
-                                <td class="cart__quantity">
-                                    <div class="pro-qty">
-                                        <span (click)="decrementItemQuantity(item)" class="dec qtybtn">-</span>
-                                        <input type="text" value="{{item.quantity}}">
-                                        <span (click)="incrementItemQuantity(item)" class="inc qtybtn">+</span>
-                                    </div>
-                                </td>
-                                <td class="cart__total">{{item.price * item.quantity | currency}}</td>
-                                <td class="cart__close"><span (click)="removeItemFromBasket(item)" class="icon_close"></span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <app-basket-summary
+                    (decrement)="decrementItemQuantity($event)"
+                    (increment)="incrementItemQuantity($event)"
+                    (remove)="removeItemFromBasket($event)"
+                >
+                </app-basket-summary>
             </div>
         </div>
         <div class="row">
