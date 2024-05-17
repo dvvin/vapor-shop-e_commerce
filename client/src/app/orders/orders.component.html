@@ -1,0 +1,36 @@
+<section class="shop-cart spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="shop__cart__table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="order-orders">Order</th>
+                                <th class="order-date">Date</th>
+                                <th class="order-total">Total</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="cart__table__orders" *ngFor="let order of orders" routerLink="/orders/{{order.id}}">
+                                <td class="cart__product__item order-number">
+                                    <div class="cart__product__item__title">
+                                        <h6>#{{order.id}}</h6>
+                                    </div>
+                                </td>
+                                <td class="cart__price order-date">{{order.orderDate | date: 'medium'}}</td>
+                                <td class="cart__quantity order-total">
+                                    <div class="pro-qty">
+                                        <input type="text" value="{{order.total | currency}}">
+                                    </div>
+                                </td>
+                                <td class="cart__total">{{order.status}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

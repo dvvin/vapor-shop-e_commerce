@@ -7,7 +7,12 @@ import { BehaviorSubject } from 'rxjs';
 export class BreadcrumbService {
     private productTitleSubject = new BehaviorSubject<string | null>(null);
     public productTitle$ = this.productTitleSubject.asObservable();
-    set: any;
+
+    set(key: string, value: string) {
+        if (key === '@OrderDetail') {
+            this.productTitleSubject.next(value);
+        }
+    }
 
     updateProductTitle(title: string) {
         this.productTitleSubject.next(title);

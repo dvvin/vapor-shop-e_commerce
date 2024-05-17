@@ -4,7 +4,6 @@ import { TestErrorComponent } from './core/test-error/test-error.component';
 import { ServerErrorComponent } from './core/server-error/server-error.component';
 import { NotFoundComponent } from './core/not-found/not-found.component';
 import { authGuard } from './core/guards/auth.guard';
-import { CheckoutComponent } from './checkout/checkout.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent, data: { breadcrumb: 'Home' } },
@@ -17,7 +16,8 @@ export const routes: Routes = [
     },
     {
         path: 'basket', loadChildren: () => import('./basket/basket.module')
-            .then(mod => mod.BasketModule), data: { breadcrumb: 'Basket' }
+            .then(mod => mod.BasketModule), data: { breadcrumb: 'Basket' },
+        canActivate: [authGuard]
     },
     {
         path: 'checkout', loadChildren: () => import('./checkout/checkout.module')
@@ -28,5 +28,11 @@ export const routes: Routes = [
         path: 'account', loadChildren: () => import('./account/account.module')
             .then(mod => mod.AccountModule), data: { breadcrumb: { skip: true } }
     },
+    {
+        path: 'orders', loadChildren: () => import('./orders/orders.module')
+            .then(mod => mod.OrdersModule), data: { breadcrumb: 'Orders' },
+        canActivate: [authGuard]
+    },
+
     { path: '**', redirectTo: 'not-found', pathMatch: 'full' }
 ];

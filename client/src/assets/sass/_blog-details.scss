@@ -141,7 +141,11 @@
     padding: 14px 30px;
     margin-bottom: 55px;
     white-space: nowrap;
-    width: 22%
+    width: 22%;
+    cursor: pointer;
+    &:hover {
+        background: #e1e1e1;
+    }
 }
 
 .blog__details__btn__item {
@@ -152,7 +156,6 @@
         h6 {
 
             a {
-
                 i {
                     margin-right: 0;
                     margin-left: 5px;

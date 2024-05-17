@@ -12,11 +12,24 @@
                     <div class="blog__details__desc">
                         <p>You will receive an email confirmation shortly.</p>
                     </div>
-                    <div class="blog__details__btns">
+                    <div *ngIf="order" routerLink="/orders/{{order?.id}}" class="blog__details__btns">
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="blog__details__btn__item">
-                                    <h6><a href="#">View Order</a></h6>
+                                    <h6>
+                                        <a>View Order</a>
+                                    </h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="!order" routerLink="/orders" class="blog__details__btns">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="blog__details__btn__item">
+                                    <h6>
+                                        <a>View Orders</a>
+                                    </h6>
                                 </div>
                             </div>
                         </div>
