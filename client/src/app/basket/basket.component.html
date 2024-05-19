@@ -10,6 +10,7 @@
                     (decrement)="decrementItemQuantity($event)"
                     (increment)="incrementItemQuantity($event)"
                     (remove)="removeItemFromBasket($event)"
+                    [items]="basket.items"
                 >
                 </app-basket-summary>
             </div>
@@ -37,7 +38,13 @@
                 </div> -->
             </div>
             <div class="col-lg-4 offset-lg-2">
-                <app-order-totals></app-order-totals>
+                <app-order-totals
+                    *ngIf="(basketTotal$ | async)"
+                    [shippingPrice]="(basketTotal$ | async).shipping"
+                    [subtotal]="(basketTotal$ | async).subtotal"
+                    [total]="(basketTotal$ | async).total"
+                >
+                </app-order-totals>
             </div>
         </div>
     </div>

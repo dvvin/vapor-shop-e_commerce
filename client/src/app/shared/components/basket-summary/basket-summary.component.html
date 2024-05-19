@@ -1,8 +1,8 @@
-<div *ngIf="(basket$ | async) === null">
+<div *ngIf="items.length === 0">
     <p>No items in basket</p>
 </div>
 
-<div class="shop__cart__table">
+<div class="shop__cart__table" *ngIf="items.length > 0">
     <table>
         <thead>
             <tr>
@@ -14,19 +14,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let item of (basket$ | async).items">
-                <td routerLink="/shop/{{item.id}}" routerLinkActive="router-link-active" class="cart__product__item">
+            <tr *ngFor="let item of items">
+                <td routerLink="/shop/{{item.id || item.productId}}" routerLinkActive="router-link-active"
+                    class="cart__product__item">
                     <img src="{{item.pictureUrl}}" alt="">
                     <div class="cart__product__item__title">
                         <h6>{{item.productName}}</h6>
                         <h6>{{item.type}}</h6>
-                        <div class="rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
                     </div>
                 </td>
                 <td class="cart__price">{{item.price | currency}}</td>
@@ -38,8 +32,9 @@
                     </div>
                 </td>
                 <td class="cart__total">{{item.price * item.quantity | currency}}</td>
-                <td *ngIf="isBasket" class="cart__close"><span (click)="removeItemFromBasket(item)"
-                        class="icon_close"></span></td>
+                <td *ngIf="isBasket" class="cart__close">
+                    <span (click)="removeItemFromBasket(item)" class="icon_close"></span>
+                </td>
             </tr>
         </tbody>
     </table>

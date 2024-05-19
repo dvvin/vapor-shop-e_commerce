@@ -13,13 +13,15 @@ import { RouterModule } from '@angular/router';
   styleUrl: './order-totals.component.scss'
 })
 export class OrderTotalsComponent implements OnInit {
-  basketTotal$: Observable<IBasketTotals>;
   @Input() isBasket = true
   @Input() isCheckout = false;
 
-  constructor(private basketService: BasketService) { }
+  @Input() shippingPrice: number;
+  @Input() subtotal: number;
+  @Input() total: number;
+
+  constructor() { }
 
   ngOnInit(): void {
-    this.basketTotal$ = this.basketService.basketTotal$
   }
 }

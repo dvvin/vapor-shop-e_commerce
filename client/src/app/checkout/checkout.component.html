@@ -24,7 +24,10 @@
                         <h5>Order Summary</h5>
                     </div>
                 </form>
-                <app-order-totals [isBasket]="false" [isCheckout]="true"></app-order-totals>
+                <app-order-totals *ngIf="(basketTotal$ | async)" [shippingPrice]="(basketTotal$ | async).shipping"
+                    [subtotal]="(basketTotal$ | async).subtotal" [total]="(basketTotal$ | async).total"
+                    [isBasket]="false" [isCheckout]="true">
+                </app-order-totals>
             </div>
         </div>
     </div>

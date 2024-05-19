@@ -4,11 +4,13 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { BreadcrumbService } from '../../core/breadcrumb.service';
 import { OrdersService } from '../orders.service';
 import { CommonModule } from '@angular/common';
+import { BasketSummaryComponent } from '../../shared/components/basket-summary/basket-summary.component';
+import { OrderTotalsComponent } from '../../shared/components/order-totals/order-totals.component';
 
 @Component({
   selector: 'app-order-detail',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, BasketSummaryComponent, OrderTotalsComponent],
   templateUrl: './order-detail.component.html',
   styleUrl: './order-detail.component.scss'
 })
