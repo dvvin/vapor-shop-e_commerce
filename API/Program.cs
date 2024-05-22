@@ -50,7 +50,7 @@ builder.Services.AddCors(corsOptions => // Adds CORS services to the specified I
             policy
                 .AllowAnyHeader() // Allows any header to be used for the request.
                 .AllowAnyMethod() // Allows any HTTP method to be used for the request.
-                .WithOrigins("http://localhost:5273", "https://localhost:4200"); // Specifies the origins that are allowed to access the resources.
+                .WithOrigins("https://localhost:5273", "https://localhost:4200"); // Specifies the origins that are allowed to access the resources.
         }
     );
 });

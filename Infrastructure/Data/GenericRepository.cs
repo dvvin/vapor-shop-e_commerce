@@ -28,15 +28,7 @@ namespace Infrastructure.Data
         // If no entity is found, it throws an exception.
         public async Task<T> GetEntityWithSpec(ISpecification<T> spec)
         {
-            var result = await ApplySpecification(spec).FirstOrDefaultAsync();
-            if (result != null)
-            {
-                return result;
-            }
-            else
-            {
-                throw new Exception("No entity found matching the specification.");
-            }
+            return await ApplySpecification(spec).FirstOrDefaultAsync();
         }
 
         // Retrieves a list of entities of type T based on the provided specification asynchronously.

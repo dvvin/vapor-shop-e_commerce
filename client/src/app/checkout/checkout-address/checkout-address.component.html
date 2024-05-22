@@ -58,7 +58,7 @@
             <button routerLink="/basket" type="submit" class="site-btn" style="margin-right: 43.5%;">
                 Back to Basket
             </button>
-            <button type="submit" class="site-btn" cdkStepperNext [disabled]="!checkoutForm.get('addressForm').valid">
+            <button [disabled]="checkoutForm.get('addressForm').invalid" class="site-btn" cdkStepperNext >
                 Continue to Delivery
             </button>
         </div>

@@ -1,7 +1,45 @@
-<p>checkout-payment works!</p>
-<button type="submit" class="site-btn" style="margin-right: 42%;" cdkStepperPrevious>
-    Back to Review
-</button>
-<button type="submit" class="site-btn" (click)="submitOrder()">
-    Submit Order
-</button>
+<form action="#" class="checkout__form" [formGroup]="checkoutForm">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row" style="margin-bottom: 20px;" formGroupName="paymentForm">
+                <h5>Payment</h5>
+                <div class="col-lg-12">
+                    <div class="checkout__form__input">
+                        <app-text-input [label]="'Name on card'" formControlName="nameOnCard"></app-text-input>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="checkout__form__input">
+                        <div #cardNumber class="form-control" style="padding-top: 0.625rem; padding-bottom: 0.625rem;">
+                        </div>
+                        <ng-container *ngIf="cardErrors">
+                            <span class="text-danger">{{ cardErrors }}</span>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    <div class="checkout__form__input">
+                        <div #cardExpiry class="form-control" style="padding-top: 0.625rem; padding-bottom: 0.625rem;">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    <div class="checkout__form__input">
+                        <div #cardCvc class="form-control" style="padding-top: 0.625rem; padding-bottom: 0.625rem;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="site-btn" style="margin-right: 42%;" cdkStepperPrevious>
+                Back to Review
+            </button>
+            <button
+                [disabled]="loading || checkoutForm.get('paymentForm').invalid || !cardNumberValid || !cardExpiryValid || !cardCvcValid"
+                (click)="submitOrder()" type="submit" class="site-btn" style="margin-left: 7%;">
+                Submit Order
+                <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+            </button>
+        </div>
+    </div>
+</form>

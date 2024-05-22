@@ -2,10 +2,11 @@
     <div class="col-lg-2" *ngFor="let step of steps; let i = index">
         <h6
             (click)="onClick(i)"
+            [class.disabled]="isDisabled(i)"
             [class.active]="selectedIndex === i"
             class="coupon__link"
         >
-            {{ step.label }}: {{ step.completed }}
+            {{ step.label }}
         </h6>
     </div>
     <div>

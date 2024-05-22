@@ -59,7 +59,6 @@ export class AccountService {
   logout() {
     localStorage.removeItem('token');
     this.currentUserSource.next(null);
-    console.log('currentUser after user has logged out: ', this.currentUserSource);
     this.router.navigateByUrl('/');
   }
 

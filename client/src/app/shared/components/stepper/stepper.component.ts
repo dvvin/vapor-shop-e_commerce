@@ -20,4 +20,10 @@ export class StepperComponent extends CdkStepper implements OnInit {
   onClick(index: number) {
     this.selectedIndex = index
   }
+
+  isDisabled(index: number): boolean {
+    // Implement your logic to determine if a step should be disabled
+    // For example, you can compare the index with the selectedIndex
+    return index !== this.selectedIndex;
+  }
 }

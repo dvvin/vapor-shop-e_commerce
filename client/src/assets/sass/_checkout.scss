@@ -20,6 +20,12 @@
     background: #f5f5f5;
   }
 
+  &.disabled {
+    opacity: 0.6;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+
   a {
     font-size: 14px;
     color: #444444;

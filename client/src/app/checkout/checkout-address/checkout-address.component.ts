@@ -8,6 +8,7 @@ import { StepperComponent } from '../../shared/components/stepper/stepper.compon
 import { AccountService } from '../../account/account.service';
 import { ToastrService } from 'ngx-toastr';
 import { SharedModule } from '../../shared/shared.module';
+import { IAddress } from '../../shared/models/address';
 
 @Component({
   selector: 'app-checkout-address',
@@ -20,21 +21,17 @@ import { SharedModule } from '../../shared/shared.module';
 export class CheckoutAddressComponent implements OnInit {
   @Input() checkoutForm: FormGroup;
 
-  constructor(private stepper: CdkStepper, private accountService: AccountService, private toastr: ToastrService) { }
+  constructor(private accountService: AccountService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-  }
-
-  onSubmit() {
-    this.stepper.next();
   }
 
   saveUserAddress() {
     this.accountService.updateUserAddress(this.checkoutForm.get('addressForm').value)
       .subscribe({
-        next: () => {
+        next: (address: IAddress) => {
           this.toastr.success('Address saved');
-          // this.stepper.next();
+          this.checkoutForm.get('addressForm').reset(address);
         },
         error: (error) => {
           this.toastr.error(error.message);

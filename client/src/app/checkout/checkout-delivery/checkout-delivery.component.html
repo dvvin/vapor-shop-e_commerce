@@ -24,6 +24,6 @@
 <button type="submit" class="site-btn" style="margin-right: 43.5%;" cdkStepperPrevious>
     Back to Address
 </button>
-<button type="submit" class="site-btn" cdkStepperNext [disabled]="!checkoutForm.get('deliveryForm.deliveryMethod').valid">
+<button [disabled]="checkoutForm.get('deliveryForm').invalid" class="site-btn" cdkStepperNext >
     Continue to Review
 </button>

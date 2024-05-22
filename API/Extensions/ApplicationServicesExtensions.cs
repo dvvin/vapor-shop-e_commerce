@@ -29,6 +29,9 @@ namespace API.Extensions
             // Register the UnitOfWork for dependency injection and associate it with the IUnitOfWork interface.
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+            // Register the PaymentService for dependency injection and associate it with the IPaymentService interface.
+            services.AddScoped<IPaymentService, PaymentService>();
+
             // Register the ProductBrandRepository for dependency injection and associate it with the IProductBrandRepository interface.
             services.AddAutoMapper(typeof(MappingProfiles));
 

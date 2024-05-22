@@ -1,5 +1,4 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { OrdersModule } from './orders.module';
 import { IOrder } from '../shared/models/order';
 import { OrdersService } from './orders.service';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
