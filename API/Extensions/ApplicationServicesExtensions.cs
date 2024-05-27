@@ -11,6 +11,8 @@ namespace API.Extensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
+            services.AddSingleton<IResponseCacheService, ResponseCacheService>();
+
             // Register the ProductService for dependency injection and associate it with the IProductService interface.
             services.AddScoped<ITokenService, TokenService>();
 

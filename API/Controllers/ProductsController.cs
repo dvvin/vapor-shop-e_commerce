@@ -33,6 +33,7 @@ namespace API.Controllers
             _mapper = mapper;
         }
 
+        [Cached(600)]
         // This method handles the HTTP GET request for retrieving a list of products with optional filtering and pagination
         [HttpGet]
         public async Task<ActionResult<Pagination<ProductToReturnDto>>> GetProducts(
@@ -67,6 +68,7 @@ namespace API.Controllers
             );
         }
 
+        [Cached(600)]
         [HttpGet("{id}")] // Marks this method as handling HTTP GET requests with an "id" parameter.
         [ProducesResponseType(StatusCodes.Status200OK)] // Marks this method as returning a 200 OK response.
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)] // Marks this method as returning a 404 Not Found response.
@@ -83,6 +85,7 @@ namespace API.Controllers
             return _mapper.Map<Product, ProductToReturnDto>(product);
         }
 
+        [Cached(600)]
         [HttpGet("brands")]
         public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductBrands()
         {
@@ -90,6 +93,7 @@ namespace API.Controllers
             return Ok(brands); // Returns the product brands with a 200 OK response.
         }
 
+        [Cached(600)]
         [HttpGet("types")]
         public async Task<ActionResult<IReadOnlyList<ProductType>>> GetProductTypes()
         {

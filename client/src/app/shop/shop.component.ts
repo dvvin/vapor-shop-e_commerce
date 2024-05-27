@@ -47,7 +47,6 @@ export class ShopComponent implements OnInit {
     this.shopService.getProducts(this.shopParams)
       .subscribe({
         next: (response) => {
-          // console.log(response);
           this.products = response!.data;
           this.shopParams.pageNumber = response!.pageIndex;
           this.shopParams.pageSize = response!.pageSize;
@@ -63,7 +62,6 @@ export class ShopComponent implements OnInit {
   getBrands() {
     this.shopService.getBrands().subscribe({
       next: (response) => {
-        // console.log(response);
         this.brands = [{ id: 0, name: 'All' }, ...response];
       },
       error: (error) => {
@@ -75,7 +73,6 @@ export class ShopComponent implements OnInit {
   getTypes() {
     this.shopService.getTypes().subscribe({
       next: (response) => {
-        // console.log(response);
         this.types = [{ id: 0, name: 'All' }, ...response];
       },
       error: (error) => {

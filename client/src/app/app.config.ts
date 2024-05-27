@@ -8,6 +8,7 @@ import { provideToastr } from 'ngx-toastr';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptors';
 import { jwtInterceptor } from './core/interceptors/jwt.interceptor';
+import { CacheInterceptor } from './core/interceptors/cache.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,6 +19,9 @@ export const appConfig: ApplicationConfig = {
     },
     {
       provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true
     },
     provideToastr({
       positionClass: 'toast-bottom-right',
