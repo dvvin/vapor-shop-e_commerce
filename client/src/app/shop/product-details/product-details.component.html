@@ -1,4 +1,4 @@
-<section class="product-details spad" style="margin-top: 60px;">
+<section class="product-details spad">
     <div class="container">
         <div class="row" *ngIf="product">
             <div class="col-lg-6">
@@ -6,22 +6,13 @@
                     <div class="product__details__slider__content">
                         <div class="product__details__pic__slider owl-carousel owl-loaded">
                             <div class="owl-stage-outer">
-                                <div class="owl-stage"
-                                    style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 1324px;">
-                                    <div class="owl-item active" style="width: 330.987px;"><img data-hash="product-1"
-                                            class="product__big__img" src="{{product.pictureUrl}}" alt=""></div>
-                                    <div class="owl-item" style="width: 330.987px;"><img data-hash="product-2"
-                                            class="product__big__img" src="{{product.pictureUrl}}" alt=""></div>
-                                    <div class="owl-item" style="width: 330.987px;"><img data-hash="product-3"
-                                            class="product__big__img" src="{{product.pictureUrl}}" alt=""></div>
-                                    <div class="owl-item" style="width: 330.987px;"><img data-hash="product-4"
-                                            class="product__big__img" src="{{product.pictureUrl}}" alt=""></div>
+                                <div class="owl-stage">
+                                    <div class="owl-item active">
+                                        <img data-hash="product-1" class="product__big__img"
+                                            src="{{product.pictureUrl}}" alt="">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="owl-nav"><button type="button" role="presentation" class="owl-prev disabled"><i
-                                        class="arrow_carrot-left"></i></button><button type="button" role="presentation"
-                                    class="owl-next"><i class="arrow_carrot-right"></i></button></div>
-                            <div class="owl-dots disabled"></div>
                         </div>
                     </div>
                 </div>
@@ -47,7 +38,7 @@
                             Add to cart
                         </a>
                         <ul>
-                            <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                            <!-- <li><a href="#"><span class="icon_heart_alt"></span></a></li> -->
                         </ul>
                     </div>
 

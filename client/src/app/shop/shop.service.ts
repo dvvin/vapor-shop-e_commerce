@@ -6,14 +6,16 @@ import { IType } from '../shared/models/productType';
 import { map } from 'rxjs/operators';
 import { ShopParams } from '../shared/models/shopParams';
 import { IProduct } from '../shared/models/product';
+import { CacheService } from '../core/services/cache.service';
+import { environment } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShopService {
-  baseUrl = 'https://localhost:5273/api/'
+  baseUrl = environment.apiUrl
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cacheService: CacheService) { }
 
   getProduct(id: number) {
     return this.http.get<IProduct>(this.baseUrl + 'products/' + id)
@@ -52,5 +54,9 @@ export class ShopService {
 
   getTypes() {
     return this.http.get<IType[]>(this.baseUrl + 'products/types')
+  }
+
+  clearCache() {
+    this.cacheService.clear()
   }
 }

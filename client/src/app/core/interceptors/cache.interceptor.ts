@@ -29,13 +29,7 @@ export class CacheInterceptor implements HttpInterceptor {
   }
 
   private getCacheKey(req: HttpRequest<any>): string {
-    const url = req.url;
-    const params = req.params;
-    const brandId = params.get('brandId');
-    const typeId = params.get('typeId');
-    const sort = params.get('sort');
-    const pageNumber = params.get('pageIndex');
-    const cacheKey = `${url}_brandId=${brandId}_typeId=${typeId}_sort=${sort}_pageNumber=${pageNumber}`;
-    return cacheKey;
+    const url = req.urlWithParams;
+    return url;
   }
 }

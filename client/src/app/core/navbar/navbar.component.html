@@ -18,9 +18,9 @@
                             <li routerLinkActive="active">
                                 <a routerLink="/shop">Shop</a>
                             </li>
-                            <li routerLinkActive="active">
+                            <!-- <li routerLinkActive="active">
                                 <a routerLink="/test-error">Errors</a>
-                            </li>
+                            </li> -->
                         </ul>
                     </ng-container>
 
@@ -32,9 +32,9 @@
                             <li routerLinkActive="active">
                                 <a routerLink="/shop">Shop</a>
                             </li>
-                            <li routerLinkActive="active">
+                            <!-- <li routerLinkActive="active">
                                 <a routerLink="/test-error">Errors</a>
-                            </li>
+                            </li> -->
                             <li routerLinkActive="active">
                                 <a routerLink="/basket">Basket</a>
                             </li>
@@ -49,15 +49,15 @@
                 <div class="header__right">
                     <ng-container *ngIf="(currentUser$ | async) === null">
                         <div class="header__right__auth">
-                            <a routerLink="/account/login">Login</a>
-                            <a routerLink="/account/register"> Register</a>
+                            <a class="login" routerLink="/account/login">Login</a>
+                            <a class="register" routerLink="/account/register">Register</a>
                         </div>
                     </ng-container>
 
                     <ng-container *ngIf="currentUser$ | async">
                         <div class="header__right__auth">
                             <a>Welcome {{(currentUser$ | async).displayName}}</a>
-                            <a class="logout" (click)="logout()"> Logout</a>
+                            <a class="logout" (click)="logout()">Logout</a>
                         </div>
                     </ng-container>
                     <ul class="header__right__widget">

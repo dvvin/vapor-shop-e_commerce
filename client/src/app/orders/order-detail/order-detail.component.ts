@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { IOrder } from '../../shared/models/order';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { BreadcrumbService } from '../../core/breadcrumb.service';
@@ -17,9 +17,12 @@ import { OrderTotalsComponent } from '../../shared/components/order-totals/order
 export class OrderDetailComponent implements OnInit {
   order: IOrder;
 
-  constructor(private route: ActivatedRoute,
+  constructor(
+    private route: ActivatedRoute,
     private breadcrumbService: BreadcrumbService,
-    private ordersService: OrdersService) {
+    private ordersService: OrdersService,
+    private cdRef: ChangeDetectorRef
+  ) {
     this.breadcrumbService.set('@OrderDetail', '');
   }
 
@@ -28,6 +31,7 @@ export class OrderDetailComponent implements OnInit {
       next: (order: IOrder) => {
         this.order = order;
         this.breadcrumbService.set('@OrderDetail', `Order #${order.id} - ${order.status}`);
+        this.cdRef.markForCheck();
       },
       error: error => console.log(error)
     })

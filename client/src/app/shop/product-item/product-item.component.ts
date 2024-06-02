@@ -6,13 +6,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BasketService } from '../../basket/basket.service';
 
-
 @Component({
   selector: 'app-product-item',
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './product-item.component.html',
-  styleUrl: './product-item.component.scss'
+  styleUrls: ['./product-item.component.scss']
 })
 export class ProductItemComponent implements OnInit {
   @Input() product!: IProduct;
@@ -23,5 +22,9 @@ export class ProductItemComponent implements OnInit {
 
   addItemToBasket() {
     this.basketService.addItemToBasket(this.product);
+  }
+
+  stopPropagation(event: Event) {
+    event.stopPropagation();
   }
 }

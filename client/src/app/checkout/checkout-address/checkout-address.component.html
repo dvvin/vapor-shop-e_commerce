@@ -41,13 +41,10 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="checkout__form__checkbox">
-                        <label
-                            (click)="checkoutForm.get('addressForm').valid &&
+                        <label (click)="checkoutForm.get('addressForm').valid &&
                                 checkoutForm.get('addressForm').dirty &&
-                                saveUserAddress()"
-                            [class.disabled]="!checkoutForm.get('addressForm').valid ||
-                                !checkoutForm.get('addressForm').dirty"
-                            for="note">
+                                saveUserAddress()" [class.disabled]="!checkoutForm.get('addressForm').valid ||
+                                !checkoutForm.get('addressForm').dirty" for="note">
                             Save as default address
                             <input type="checkbox" id="note">
                             <span class="checkmark"></span>
@@ -58,7 +55,7 @@
             <button routerLink="/basket" type="submit" class="site-btn" style="margin-right: 43.5%;">
                 Back to Basket
             </button>
-            <button [disabled]="checkoutForm.get('addressForm').invalid" class="site-btn" cdkStepperNext >
+            <button [disabled]="checkoutForm.get('addressForm').invalid" class="site-btn" cdkStepperNext>
                 Continue to Delivery
             </button>
         </div>

@@ -16,7 +16,7 @@ namespace Infrastructure.Data.Config
             builder.Property(p => p.Name).IsRequired().HasMaxLength(100);
 
             // Configure the Description property of the Product entity to be required and have a maximum length of 180
-            builder.Property(p => p.Description).IsRequired().HasMaxLength(180);
+            builder.Property(p => p.Description).IsRequired();
 
             // Configure the Price property of the Product entity to have a data type of decimal(18,2)
             builder.Property(p => p.Price).HasColumnType("decimal(18,2)");

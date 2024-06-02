@@ -1,11 +1,12 @@
 <div class="product__item">
-    <div class="product__item__pic set-bg" [style.background-image]="'url(' + product.pictureUrl + ')'">
-        <div class="label new">New</div>
-        <ul class="product__hover">
+    <div class="product__item__pic set-bg item__card" routerLink="/shop/{{product.id}}"
+        [style.background-image]="'url(' + product.pictureUrl + ')'">
+        <!-- <div class="label new">New</div> -->
+        <ul class="product__hover" (click)="stopPropagation($event)">
             <li><a [href]="product.pictureUrl" class="image-popup"><span class="arrow_expand"></span></a></li>
-            <li><a routerLink="/shop/{{product.id}}"><span class="icon_heart_alt"></span></a></li>
+            <!-- <li><a><span class="icon_heart_alt"></span></a></li> -->
             <li>
-                <a (click)="addItemToBasket()">
+                <a (click)="addItemToBasket(); stopPropagation($event)">
                     <span class="icon_bag_alt"></span>
                 </a>
             </li>

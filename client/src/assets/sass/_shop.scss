@@ -72,6 +72,21 @@
       }
     }
   }
+
+  .sort__options {
+    font-weight: bold;
+  }
+
+  .not__selected {
+    transition: background-color 0.3s ease;
+    padding: 4px;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: #f5f5f5;
+    }
+  }
+
 }
 
 .categories__accordion .card-heading a:after,
@@ -205,22 +220,33 @@
   }
 
   .size__list {
-
     label {
       display: block;
       padding-left: 20px;
       font-size: 14px;
-      // text-transform: uppercase;
       color: #444444;
       position: relative;
       cursor: pointer;
+
+      span {
+        transition: background-color 0.3s ease;
+        padding: 4px;
+        border-radius: 4px;
+
+        &.brand__options {
+          font-weight: bold;
+        }
+
+        &.not__selected:hover {
+          background-color: #f5f5f5;
+        }
+      }
 
       input {
         position: absolute;
         visibility: hidden;
 
         &:checked {
-
           & ~ .checkmark {
             border-color: $primary-color;
 

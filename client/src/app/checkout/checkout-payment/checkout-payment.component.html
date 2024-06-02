@@ -34,9 +34,7 @@
             <button type="submit" class="site-btn" style="margin-right: 42%;" cdkStepperPrevious>
                 Back to Review
             </button>
-            <button
-                [disabled]="loading || checkoutForm.get('paymentForm').invalid || !cardNumberValid || !cardExpiryValid || !cardCvcValid"
-                (click)="submitOrder()" type="submit" class="site-btn" style="margin-left: 7%;">
+            <button (click)="submitOrder()" type="submit" class="site-btn" style="margin-left: 7%;">
                 Submit Order
                 <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
             </button>

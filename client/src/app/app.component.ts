@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from "./core/navbar/navbar.component";
 import { HttpClientModule } from '@angular/common/http';
@@ -28,6 +28,7 @@ import { AccountService } from './account/account.service';
     SectionHeaderComponent,
   ],
   providers: [BasketService, AccountService],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
   title = 'Vapor Shop';
@@ -46,7 +47,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading$.subscribe(() => {
-      this.cdRef.detectChanges();
+      setTimeout(() => {
+        this.cdRef.detectChanges();
+      }, 0);
     });
 
     if (isPlatformBrowser(this.platformId)) {
@@ -75,4 +78,3 @@ export class AppComponent implements OnInit {
     }
   }
 }
-

@@ -8,9 +8,8 @@ import { BasketService } from '../../basket/basket.service';
 import { CheckoutService } from '../checkout.service';
 import { ToastrService } from 'ngx-toastr';
 import { IBasket } from '../../shared/models/basket';
-import { IOrder } from '../../shared/models/order';
 import { TextInputComponent } from '../../shared/text-input/text-input.component';
-import { loadStripe, Stripe, StripeCardCvcElement, StripeCardExpiryElement, StripeCardNumberElement } from '@stripe/stripe-js';
+import { Stripe } from '@stripe/stripe-js';
 
 declare var Stripe: any;
 
@@ -117,11 +116,17 @@ export class CheckoutPaymentComponent implements AfterViewInit, OnDestroy {
   }
 
   private async confirmPaymentWithStripe(basket) {
+    const nameOnCard = this.checkoutForm.get('paymentForm').get('nameOnCard').value;
+    if (!nameOnCard || nameOnCard.trim() === '') {
+      this.toastr.error('Please enter a valid name on the card');
+      return;
+    }
+
     return this.stripe.confirmCardPayment(basket.clientSecret, {
       payment_method: {
         card: this.cardNumber,
         billing_details: {
-          name: this.checkoutForm.get('paymentForm').get('nameOnCard').value
+          name: nameOnCard
         }
       }
     });

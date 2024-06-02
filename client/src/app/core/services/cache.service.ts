@@ -9,12 +9,10 @@ export class CacheService {
   constructor() { }
 
   put(url: string, response: any) {
-    console.log('cache miss', url);
     this.cache.set(url, response);
   }
 
   get(url: string): any {
-    console.log('cache hit', url);
     return this.cache.get(url);
   }
 

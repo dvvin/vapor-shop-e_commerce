@@ -16,7 +16,7 @@ namespace Infrastructure.Data
             var optionsBuilder = new DbContextOptionsBuilder<StoreContext>();
             var connectionString = configuration.GetConnectionString("DefaultConnection");
 
-            optionsBuilder.UseSqlite(connectionString);
+            optionsBuilder.UseNpgsql(connectionString);
 
             return new StoreContext(optionsBuilder.Options);
         }

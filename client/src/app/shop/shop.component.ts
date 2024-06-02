@@ -16,10 +16,8 @@ import { SharedModule } from '../shared/shared.module';
   styleUrl: './shop.component.scss',
   providers: [ShopService]
 })
-
 export class ShopComponent implements OnInit {
-  @ViewChild('search', { static: false })
-  searchTerm: ElementRef = {} as ElementRef
+  @ViewChild('search', { static: false }) searchTerm: ElementRef = {} as ElementRef;
   products: IProduct[] = [];
   brands: IBrand[] = [];
   types: IType[] = [];
@@ -35,7 +33,7 @@ export class ShopComponent implements OnInit {
     { name: 'Price: High to Low', value: 'priceDesc' }
   ];
 
-  constructor(private shopService: ShopService) { }
+  constructor(private shopService: ShopService) {}
 
   ngOnInit(): void {
     this.getProducts();
@@ -106,6 +104,7 @@ export class ShopComponent implements OnInit {
   }
 
   onSearch() {
+    this.shopService.clearCache()
     this.shopParams.search = this.searchTerm.nativeElement.value;
     this.shopParams.pageNumber = 1;
     this.getProducts();
@@ -116,11 +115,10 @@ export class ShopComponent implements OnInit {
     this.onSearch();
   }
 
-
-
   onReset() {
     this.searchTerm.nativeElement.value = '';
     this.shopParams = new ShopParams();
+    this.shopService.clearCache()
     this.getProducts();
   }
 

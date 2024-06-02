@@ -18,7 +18,7 @@
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "externalDependencies":[""],
-            "outputPath": "dist/client",
+            "outputPath": "../API/wwwroot",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -40,15 +40,7 @@
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "src/assets/js/bootstrap.min.js",
-              "src/assets/js/jquery-3.3.1.min.js",
-              "src/assets/js/jquery-ui.min.js",
-              "src/assets/js/jquery.countdown.min.js",
-              "src/assets/js/jquery.magnific-popup.min.js",
-              "src/assets/js/jquery.nicescroll.min.js",
-              "src/assets/js/jquery.slicknav.js",
-              "src/assets/js/main.js",
-              "src/assets/js/mixitup.min.js",
-              "src/assets/js/owl.carousel.min.js"
+              "src/assets/js/jquery-3.3.1.min.js"
             ],
             "server": "src/main.server.ts",
             "prerender": true,
@@ -61,8 +53,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "1mb",
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",

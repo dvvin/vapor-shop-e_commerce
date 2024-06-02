@@ -74,6 +74,7 @@
             .cart__product__item {
                 overflow: hidden;
                 width: 585px;
+                cursor: pointer;
 
                 img {
                     float: left;
@@ -153,6 +154,11 @@
                     display: inline-block;
                     font-weight: 600;
                     cursor: pointer;
+                    transition: background-color 0.1s ease-in-out;
+
+                    &:hover {
+                        background-color: $border-1;
+                    }
                 }
             }
         }

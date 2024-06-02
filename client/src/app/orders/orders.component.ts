@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID, ChangeDetectorRef } from '@angular/core';
 import { IOrder } from '../shared/models/order';
 import { OrdersService } from './orders.service';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
@@ -14,8 +14,10 @@ import { RouterModule } from '@angular/router';
 export class OrdersComponent implements OnInit {
   orders: IOrder[];
 
-  constructor(private ordersService: OrdersService,
-    @Inject(PLATFORM_ID) private platformId: Object
+  constructor(
+    private ordersService: OrdersService,
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private cdRef: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -28,6 +30,7 @@ export class OrdersComponent implements OnInit {
     this.ordersService.getOrdersForUser().subscribe({
       next: (orders: IOrder[]) => {
         this.orders = orders;
+        this.cdRef.markForCheck();
       },
       error: error => console.log(error)
     })

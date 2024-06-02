@@ -1,11 +1,12 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
+using StackExchange.Redis;
 using API.Extensions;
 using API.Middleware;
 using Core.Entities.Identity;
 using Infrastructure.Data;
 using Infrastructure.Identity;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,12 +20,12 @@ builder.Services.AddSwaggerGen();
 
 // Configure the DbContext with SQL Lite.
 builder.Services.AddDbContext<StoreContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"))
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
 // Configure Identity
 builder.Services.AddDbContext<AppIdentityDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("IdentityConnection"))
+    options.UseNpgsql(builder.Configuration.GetConnectionString("IdentityConnection"))
 );
 
 // Configure Redis
@@ -89,14 +90,33 @@ app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
 app.UseHttpsRedirection();
 
-app.UseStaticFiles(); // Enables the use of static files
+app.UseStaticFiles(
+    new StaticFileOptions
+    {
+        FileProvider = new PhysicalFileProvider(
+            Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/browser")
+        ),
+        RequestPath = ""
+    }
+);
 
-app.UseCors("CorsPolicy"); // Enables CORS for the specified policy
+app.UseStaticFiles(
+    new StaticFileOptions
+    {
+        FileProvider = new PhysicalFileProvider(
+            Path.Combine(Directory.GetCurrentDirectory(), "Content")
+        ),
+        RequestPath = "/content"
+    }
+);
+
+app.UseCors("CorsPolicy");
 
 app.UseAuthentication();
 
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapFallbackToController("Index", "Fallback");
 
 app.Run();

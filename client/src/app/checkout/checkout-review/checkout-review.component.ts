@@ -30,7 +30,11 @@ export class CheckoutReviewComponent {
     if (isPlatformBrowser(this.platformId)) {
       this.basket$ = this.basketService.basket$;
       this.basket$.subscribe((basket) => {
-        this.items = basket.items;
+        if (basket) {
+          this.items = basket.items;
+        } else {
+          this.items = [];
+        }
       });
     }
   }

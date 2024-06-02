@@ -65,7 +65,22 @@ namespace API.Controllers
         public async Task<ActionResult<AddressDto>> UpdateUserAddress(AddressDto address)
         {
             var user = await _userManager.FindByUserByClaimsPrincipleWithAddressAsync(User);
-            user.Address = _mapper.Map<AddressDto, Address>(address);
+
+            if (user.Address == null)
+            {
+                user.Address = _mapper.Map<AddressDto, Address>(address);
+                user.Address.AppUserId = user.Id;
+            }
+            else
+            {
+                user.Address.FirstName = address.FirstName;
+                user.Address.LastName = address.LastName;
+                user.Address.Street = address.Street;
+                user.Address.City = address.City;
+                user.Address.State = address.State;
+                user.Address.ZipCode = address.ZipCode;
+            }
+
             var result = await _userManager.UpdateAsync(user);
 
             if (result.Succeeded)
@@ -104,13 +119,9 @@ namespace API.Controllers
         {
             if (CheckEmailExistsAsync(registerDto.Email).Result.Value)
             {
-                return BadRequest(new ApiValidationErrorResponse
-                {
-                    Errors =
-                new[]{
-                    "Email address is in use"
-                }
-                });
+                return BadRequest(
+                    new ApiValidationErrorResponse { Errors = new[] { "Email address is in use" } }
+                );
             }
 
             var user = new AppUser

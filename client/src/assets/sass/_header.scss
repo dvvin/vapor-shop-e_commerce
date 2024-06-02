@@ -129,8 +129,37 @@
         position: relative;
         margin-right: 8px;
 
+        &.login {
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+            padding: 2px;
+            border-radius: 4px;
+
+            &:hover {
+                background-color: $border;
+            }
+        }
+
+        &.register {
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+            padding: 2px;
+            border-radius: 4px;
+
+            &:hover {
+                background-color: $border;
+            }
+        }
+
         &.logout {
             cursor: pointer;
+            transition: background-color 0.1s ease-in-out;
+            padding: 3px;
+            border-radius: 4px;
+
+            &:hover {
+                background-color: $border;
+            }
         }
 
         &:last-child {
@@ -170,6 +199,13 @@
             font-size: 18px;
             color: $heading-color;
             position: relative;
+            transition: background-color 0.3s ease-in-out;
+            padding: 3px;
+            border-radius: 4px;
+
+            &:hover {
+                background-color: $border;
+            }
 
             .tip {
                 position: absolute;

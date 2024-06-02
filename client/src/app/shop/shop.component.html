@@ -24,7 +24,9 @@
                                                 <ul>
                                                     <li *ngFor="let sort of sortOptions">
                                                         <a href="#" (click)="onSortSelected(sort.value);
-                                                        $event.preventDefault()">
+                                                            $event.preventDefault()"
+                                                            [class.sort__options]="sort.value === shopParams.sort"
+                                                            [class.not__selected]="sort.value !== shopParams.sort">
                                                             {{sort.name}}
                                                         </a>
                                                     </li>
@@ -42,8 +44,11 @@
                             </div>
                             <div class="size__list">
                                 <label *ngFor="let brand of brands">
-                                    {{brand.name}}
-                                    <input type="checkbox" [checked]="brand.id === this.shopParams.brandId"
+                                    <span [class.brand__options]="brand.id === shopParams.brandId"
+                                        [class.not__selected]="brand.id !== shopParams.brandId">
+                                        {{brand.name}}
+                                    </span>
+                                    <input type="checkbox" [checked]="brand.id === shopParams.brandId"
                                         (change)="onBrandSelected(brand.id)">
                                     <span class="checkmark"></span>
                                 </label>
@@ -56,7 +61,10 @@
                             </div>
                             <div class="size__list color__list">
                                 <label *ngFor="let type of types">
-                                    {{type.name}}
+                                    <span [class.brand__options]="type.id === this.shopParams.typeId"
+                                        [class.not__selected]="type.id !== this.shopParams.typeId">
+                                        {{type.name}}
+                                    </span>
                                     <input type="checkbox" [checked]="type.id === this.shopParams.typeId"
                                         (change)="onTypeSelected(type.id)">
                                     <span class="checkmark"></span>

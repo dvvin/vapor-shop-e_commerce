@@ -136,6 +136,14 @@ ol {
   background-position: top center;
 }
 
+.item__card {
+  transition: transform 0.3s ease;
+}
+
+.item__card:hover {
+  transform: scale(1.05);
+}
+
 .spad {
   padding-top: 100px;
   padding-bottom: 100px;
@@ -163,11 +171,12 @@ ol {
   padding: 12px 30px 10px;
   color: $white-color;
   background: $primary-color;
+  transition: background-color 0.1s ease-in-out;
 }
 
 .primary-btn:hover {
   color: $white-color;
-  background: #8412ae;
+  background-color: $primary-hover;
 }
 
 .site-btn {
@@ -180,6 +189,12 @@ ol {
   display: inline-block;
   padding: 12px 30px;
   border-radius: 50px;
+  transition: background-color 0.1s ease-in-out;
+}
+
+.site-btn:hover {
+  color: $white-color;
+  background-color: $primary-hover;
 }
 
 /* Preloder */
@@ -211,7 +226,6 @@ ol {
   display: block; /* Show when active */
   /* Additional styles for the loader animation */
 }
-
 
 @keyframes loader {
   0% {
