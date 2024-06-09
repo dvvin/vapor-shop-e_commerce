@@ -7,7 +7,7 @@ obj
 bin
 appsettings.json
 *.db
-*.png
+API/Content/images/products
 *.jpg
 
 
@@ -490,3 +490,4 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+droplet.txt

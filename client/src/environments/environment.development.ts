@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    apiUrl: 'https://localhost:5273/api/'
+    apiUrl: 'https://vapor-shop.xyz/api/'
 };

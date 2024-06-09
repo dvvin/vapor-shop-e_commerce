@@ -1,12 +1,12 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.FileProviders;
-using StackExchange.Redis;
 using API.Extensions;
 using API.Middleware;
 using Core.Entities.Identity;
 using Infrastructure.Data;
 using Infrastructure.Identity;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
+using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,18 +42,15 @@ builder.Services.AddApplicationServices(); // Import of ApplicationServicesExten
 builder.Services.AddSwaggerDocumentation(); // Import of SwaggerServiceExtensions.cs
 builder.Services.AddIdentityServices(builder.Configuration); // Import of IdentityServiceExtensions.cs
 
-builder.Services.AddCors(corsOptions => // Adds CORS services to the specified IServiceCollection.
+builder.Services.AddCors(options =>
 {
-    corsOptions.AddPolicy( // Adds a CORS policy to the CORS services.
-        "CorsPolicy",
-        policy =>
-        {
-            policy
-                .AllowAnyHeader() // Allows any header to be used for the request.
-                .AllowAnyMethod() // Allows any HTTP method to be used for the request.
-                .WithOrigins("https://localhost:5273", "https://localhost:4200"); // Specifies the origins that are allowed to access the resources.
-        }
-    );
+    options.AddDefaultPolicy(builder =>
+    {
+        builder
+            .AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
 });
 
 var app = builder.Build();
@@ -88,7 +85,7 @@ app.UseSwaggerDocumentation();
 
 app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 
 app.UseStaticFiles(
     new StaticFileOptions
@@ -110,10 +107,10 @@ app.UseStaticFiles(
     }
 );
 
-app.UseCors("CorsPolicy");
+app.UseRouting();
+app.UseCors();
 
 app.UseAuthentication();
-
 app.UseAuthorization();
 
 app.MapControllers();
