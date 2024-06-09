@@ -56,19 +56,19 @@ Here's why Vapor Shop stands out:
 
 ## Screenshots
 #### Shop Page
-![Vapor Shop Screenshot](client\src\assets\images\shopPage.png)
+![Vapor Shop Screenshot](client/src/assets/images/shopPage.png)
 
 #### Product Page
-![Vapor Shop Screenshot](client\src\assets\images\shopProduct.png)
+![Vapor Shop Screenshot](client/src/assets/images/shopProduct.png)
 
 #### Basket Page
-![Vapor Shop Screenshot](client\src\assets\images\shopBasket.png)
+![Vapor Shop Screenshot](client/src/assets/images/shopBasket.png)
 
 #### Checkout Page
-![Vapor Shop Screenshot](client\src\assets\images\shopCheckout.png)
+![Vapor Shop Screenshot](client/src/assets/images/shopCheckout.png)
 
 #### Orders Page
-![Vapor Shop Screenshot](client\src\assets\images\shopOrders.png)
+![Vapor Shop Screenshot](client/src/assets/images/shopOrders.png)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
